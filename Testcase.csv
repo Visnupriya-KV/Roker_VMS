@@ -2,3 +2,5 @@ S.No,Control,TestCaseID,Module,Author,Description
 1,Y,API_AppealRequest_Test,API_Regression,Visnu,API_Check
 2,Y,API_CheckTicketAppeal_Test,API_Regression,Visnu,API_Check
 3,Y,API_CheckTicketEligibleAppeal_Test,API_Regression,Visnu,API_Check
+4,Y,API_UpdateTicketEnforcement_Test,API_Regression,Visnu,API_Check
+5,Y,API_Getticketstage_Test,API_Regression,Visnu,API_Check
