@@ -1,0 +1,9 @@
+{
+    "api": {
+      "checkAppealEligibility": "https://newhope.vms.staging.rokerplus.com/api/api/check-ticket-eligible-for-appeal?CitationNo=BNE455"
+    },
+    "headers": {
+      "accept": "text/plain"
+    }
+  }
+  
