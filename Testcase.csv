@@ -4,3 +4,8 @@ S.No,Control,TestCaseID,Module,Author,Description
 3,Y,API_CheckTicketEligibleAppeal_Test,API_Regression,Visnu,API_Check
 4,Y,API_UpdateTicketEnforcement_Test,API_Regression,Visnu,API_Check
 5,Y,API_Getticketstage_Test,API_Regression,Visnu,API_Check
+6,Y,API_AppealUploadDoc_Test,API_Regression,Visnu,API_Check
+7,Y,API_Get_CitationNoDetails,API_Regression,Visnu,API_Check
+8,Y,API_TicketLookup_ByLicensePlate_Test,API_Regression,Visnu,API_Check
+9,Y,API_TicketLookup_ByTicketNo_Test,API_Regression,Visnu,API_Check
+10,Y,API_CreatePayment_Test,API_Regression,Visnu,API_Check
