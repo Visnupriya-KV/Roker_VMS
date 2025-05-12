@@ -1,6 +1,6 @@
 {
     "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/payments"
+      "endpoint": "https://development.vms.staging.rokerplus.com/api/payments"
     },
     "headers": {
       "accept": "text/plain",
@@ -11,11 +11,11 @@
       "PAYMENTAMOUNT": 10,
       "CREDITORDEBITCARDAUTHNUM": "1901887465",
       "VENDORID": "VENDORID",
-      "VENDORTRANSACTIONNUMBER": "WWEC",
+      "VENDORTRANSACTIONNUMBER": "100028",
       "COMMANDNUMBER": 1,
-      "ISSUENO": "WWEC",
+      "ISSUENO": "100028",
       "LICSTATEPROV": "AB",
-      "LICPLATE": "223SA",
+      "LICPLATE": "100028",
       "PAYMENTSOURCE": "INTERNET"
     }
   }

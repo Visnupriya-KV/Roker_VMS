@@ -1,6 +1,6 @@
 {
     "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/api/payment/create"
+      "endpoint": "https://development.vms.staging.rokerplus.com/api/api/payment/create"
     },
     "headers": {
       "accept": "text/plain",
@@ -8,8 +8,8 @@
       "Token": "7pISu/sDS7lZnLsf+hVGe01qR9oNsKMfXKQysty3fDxQ0DVwtLCjWU9ZGu7Rbbk6"
     },
     "payload": {
-      "CitationNo": "BNE455",
-      "FineFeesAmt": 56, 
+      "CitationNo": "SPR22NM",
+      "FineFeesAmt": 10, 
       "AuthCode": "test",
       "TransactionDate": "2025-05-01 08:03:08.273",
       "FineFeeType": 100,

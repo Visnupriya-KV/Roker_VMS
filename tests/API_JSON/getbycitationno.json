@@ -1,6 +1,6 @@
 {
     "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/api/tickets/getbycitationno/BNREEE"
+      "endpoint": "https://development.vms.staging.rokerplus.com/api/api/tickets/getbycitationno/SPTY474"
     },
     "headers": {
       "accept": "text/plain",

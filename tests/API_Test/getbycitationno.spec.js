@@ -33,7 +33,7 @@ test('API_Get_CitationNoDetails: Validate citation ticket response', async () =>
   // Detailed content validation
   const citation = parsed.Content[0];
 
-  expect(citation).toHaveProperty('CitationNo', 'BNREEE');
+  expect(citation).toHaveProperty('CitationNo', 'SPTY474');
   expect(citation).toHaveProperty('TagNumber');
   expect(citation).toHaveProperty('Province');
   expect(citation).toHaveProperty('IssueDate');

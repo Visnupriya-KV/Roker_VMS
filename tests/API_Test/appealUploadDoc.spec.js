@@ -46,6 +46,6 @@ test('API_AppealUploadDoc_Test: Upload a document and validate response', async 
   if (parsed.StatusCode === 200) {
     console.log('✅ Upload Successful:', parsed.StatusMessage);
   } else {
-    console.warn(`⚠️ Upload Failed: ${parsed.StatusMessage}`);
+    console.warn(` Upload Failed: ${parsed.StatusMessage}`);
   }
 });
