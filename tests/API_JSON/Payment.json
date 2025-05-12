@@ -1,0 +1,22 @@
+{
+    "api": {
+      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/payments"
+    },
+    "headers": {
+      "accept": "text/plain",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "AGENCYDESIGNATOR": "OTTCI",
+      "PAYMENTAMOUNT": 10,
+      "CREDITORDEBITCARDAUTHNUM": "1901887465",
+      "VENDORID": "VENDORID",
+      "VENDORTRANSACTIONNUMBER": "WWEC",
+      "COMMANDNUMBER": 1,
+      "ISSUENO": "WWEC",
+      "LICSTATEPROV": "AB",
+      "LICPLATE": "223SA",
+      "PAYMENTSOURCE": "INTERNET"
+    }
+  }
+  
