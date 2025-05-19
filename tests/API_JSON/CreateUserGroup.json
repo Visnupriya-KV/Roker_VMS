@@ -1,6 +1,6 @@
 {
     "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/api/UserGroup/Create"
+      "endpoint": "https://development.vms.staging.rokerplus.com/api/api/UserGroup/Create"
     },
     "headers": {
       "accept": "text/plain",
