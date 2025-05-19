@@ -9,3 +9,5 @@ S.No,Control,TestCaseID,Module,Author,Description
 8,Y,API_TicketLookup_ByLicensePlate_Test,API_Regression,Visnu,API_Check
 9,Y,API_TicketLookup_ByTicketNo_Test,API_Regression,Visnu,API_Check
 10,Y,API_CreatePayment_Test,API_Regression,Visnu,API_Check
+11,Y,API_CreateUserGroup_Test,API_Regression,Visnu,API_Check
+12,Y,API_UpdateUserGroup_Test,API_Regression,Visnu,API_Check
