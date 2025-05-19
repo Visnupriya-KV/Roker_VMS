@@ -11,3 +11,4 @@ S.No,Control,TestCaseID,Module,Author,Description
 10,Y,API_CreatePayment_Test,API_Regression,Visnu,API_Check
 11,Y,API_CreateUserGroup_Test,API_Regression,Visnu,API_Check
 12,Y,API_UpdateUserGroup_Test,API_Regression,Visnu,API_Check
+13,Y,API_DeleteUserGroup_Test,API_Regression,Visnu,API_Check
