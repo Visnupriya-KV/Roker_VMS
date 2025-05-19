@@ -1,6 +1,6 @@
 {
     "api": {
-      "endpoint": "https://development.vms.staging.rokerplus.com/api/api/User/Create"
+      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/api/User/Create"
     },
     "headers": {
       "accept": "text/plain",
@@ -14,7 +14,7 @@
         "LastName": "AutomationLast",
         "EmailAddress": null,
         "Badge": "007",
-        "UserGroupName": "Test test",
+        "UserGroupName": "AutomationTestGroup",
         "SubClientId": 71
       }
       

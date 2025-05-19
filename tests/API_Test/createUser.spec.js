@@ -14,7 +14,7 @@ test('API_CreateUser_Test: Create a user via API', async () => {
     }
   });
 
-  const randomUsername = generateRandomName('userName');
+  const randomUsername = generateRandomName('userNameAuto');
   const randomEmail = generateRandomEmail('Automation', 'test.com');  
   const requestBody = {
     ...config.body,
