@@ -1,6 +1,6 @@
 {
     "api": {
-      "baseUrl": "https://development.vms.staging.rokerplus.com/api/api/UserGroup/Delete"
+      "baseUrl": "https://newhope.vms.staging.rokerplus.com/api/api/UserGroup/Delete"
     },
     "headers": {
       "accept": "text/plain",
