@@ -14,3 +14,4 @@ S.No,Control,TestCaseID,Module,Author,Description
 13,Y,API_DeleteUserGroup_Test,API_Regression,Visnu,API_Check
 14,Y,API_CreateUser_Test,API_Regression,Visnu,API_Check
 15,Y,API_UpdateUser_Test,API_Regression,Visnu,API_Check
+16,Y,API_ActivateUser_Test,API_Regression,Visnu,API_Check
