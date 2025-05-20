@@ -13,8 +13,14 @@ function generateRandomEmail(prefix = 'user', domain = 'yopmail.com') {
   return `${prefix}_${randomPart}@${domain}`;
 }
 
+function generateRandomString(prefix = 'value', length = 6) {
+  const random = Math.random().toString(36).substring(2, 2 + length);
+  return `${prefix}_${random}`;
+}
+
 module.exports = {
   generateRandomGroupName,
   generateRandomName,
-  generateRandomEmail
+  generateRandomEmail,
+  generateRandomString
 };
