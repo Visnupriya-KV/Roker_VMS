@@ -1,6 +1,6 @@
 {
     "api": {
-        "endpoint": "https://development.vms.staging.rokerplus.com/api/api/User/Update"
+        "endpoint": "https://newhope.vms.staging.rokerplus.com/api/api/User/Update"
       },
       "headers": {
         "accept": "text/plain",
