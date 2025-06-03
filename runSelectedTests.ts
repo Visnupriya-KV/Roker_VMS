@@ -3,7 +3,8 @@ import path from 'path';
 import { parse } from 'csv-parse';
 import { spawn } from 'child_process';
 
-const csvFilePath = '/Users/visnupriyakv/Desktop/Roker_VMS/Testcase.csv';
+//const csvFilePath = '/Users/visnupriyakv/Desktop/Roker_VMS/Testcase.csv';
+const csvFilePath = path.resolve(__dirname, './Testcase.csv');
 const testDir = path.resolve(__dirname, 'tests/API_Test');
 
 const run = async () => {
