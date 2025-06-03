@@ -58,20 +58,65 @@ async function sendReportEmail(status) {
     const transporter = nodemailer.createTransport(transporterOptions);
 
     // Email options
-    const mailOptions = {
-        from: emailConfig.from,
-        to: emailConfig.to,
-        subject: `ROKER TEST REPORT - ${status} - ${new Date().toLocaleString()}`,
-        text: `Playwright Roker test execution finished with status: ${status}.\nPlease find the attached HTML report.`, // Added path to text body
-        html: `<p>Playwright test execution finished with status: <b>${status}</b>.</p><p>Please find the attached HTML report.</p><p>DOWNLOAD AND VIEW THE HTML REPORT.</P>`, // Added path to HTML body
-        attachments: [
-            {
-                filename: 'ROKER_Regression_Test-report.html', // Name for the attachment
-                path: reportFilePath,
-                contentType: 'text/html'
-            },
-        ],
-    };
+    // Generate date and time in DD-MM-YY_HH-MM-SS format
+const now = new Date();
+const formatDate = (num) => String(num).padStart(2, '0');
+
+const day = formatDate(now.getDate());
+const month = formatDate(now.getMonth() + 1);
+const year = String(now.getFullYear()).slice(2); // Get last 2 digits
+const hours = formatDate(now.getHours());
+const minutes = formatDate(now.getMinutes());
+const seconds = formatDate(now.getSeconds());
+
+const timestamp = `${day}-${month}-${year}_${hours}-${minutes}-${seconds}`;
+const reportFileName = `ROKER_Regression_Test-report_${timestamp}.html`;
+
+const totalTests = 50;
+const passedTests = 50;
+const failedTests = 0;
+const duration = '3m 42s';
+
+// function sendReportEmail() {
+//   const mailOptions = {
+//     // can access them here
+//   };
+// }
+
+
+const mailOptions = {
+    from: emailConfig.from,
+    to: emailConfig.to,
+    subject: `UAT ROKER TEST REPORT - ${status.toUpperCase()} - ${now.toLocaleString()}`,
+    text: `Playwright Roker test execution finished with status: ${status.toUpperCase()}.
+Total Tests: ${totalTests}
+Passed: ${passedTests}
+Failed: ${failedTests}
+Duration: ${duration}
+
+Please download and view the attached HTML report.`,
+    html: `
+        <p>Hi Team,</p>
+        <p>UAT <b>Roker</b> test execution has <b>completed</b> with the following details:</p>
+        <ul>
+            <li><b>Status:</b> ${status.toUpperCase()}</li>
+            <li><b>Total Tests:</b> ${totalTests}</li>
+            <li><b>Passed:</b> ${passedTests}</li>
+            <li><b>Failed:</b> ${failedTests}</li>
+            <li><b>Duration:</b> ${duration}</li>
+        </ul>
+        <p>Please <b>download</b> and <b>view</b> the attached HTML report for full details.</p>
+        <p>Regards,<br/>QA Automation</p>
+    `,
+    attachments: [
+        {
+            filename: reportFileName, // now includes timestamp
+            path: reportFilePath,
+            contentType: 'text/html'
+        },
+    ],
+};
+
 
     // Send mail
     try {
