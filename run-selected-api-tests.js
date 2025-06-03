@@ -97,7 +97,7 @@ Duration: ${duration}
 Please download and view the attached HTML report.`,
     html: `
         <p>Hi Team,</p>
-        <p>UAT <b>Roker</b> test execution has <b>completed</b> with the following details:</p>
+        <p>Dev <b>Roker</b> test execution has <b>completed</b> with the following details:</p>
         <ul>
             <li><b>Status:</b> ${status.toUpperCase()}</li>
             <li><b>Total Tests:</b> ${totalTests}</li>
