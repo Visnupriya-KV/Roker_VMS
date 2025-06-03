@@ -87,7 +87,7 @@ const duration = '3m 42s';
 const mailOptions = {
     from: emailConfig.from,
     to: emailConfig.to,
-    subject: `UAT ROKER TEST REPORT - ${status.toUpperCase()} - ${now.toLocaleString()}`,
+    subject: `DEV ROKER TEST REPORT - ${status.toUpperCase()} - ${now.toLocaleString()}`,
     text: `Playwright Roker test execution finished with status: ${status.toUpperCase()}.
 Total Tests: ${totalTests}
 Passed: ${passedTests}
