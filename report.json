@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/Users/visnupriyakv/Desktop/Roker_VMS/playwright.config.js",
-    "rootDir": "/Users/visnupriyakv/Desktop/Roker_VMS/tests",
+    "configFile": "/Users/VVenkateshwaran/Desktop/Roker_VMS/playwright.config.js",
+    "rootDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/tests",
     "forbidOnly": false,
     "fullyParallel": true,
     "globalSetup": null,
@@ -10,7 +10,9 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 1
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -22,7 +24,7 @@
         null
       ],
       [
-        "/Users/visnupriyakv/Desktop/Roker_VMS/node_modules/allure-playwright/dist/cjs/index.js",
+        "/Users/VVenkateshwaran/Desktop/Roker_VMS/node_modules/allure-playwright/dist/cjs/index.js",
         null
       ],
       [
@@ -43,13 +45,15 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/Users/visnupriyakv/Desktop/Roker_VMS/test-results",
+        "outputDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "chromium",
         "name": "chromium",
-        "testDir": "/Users/visnupriyakv/Desktop/Roker_VMS/tests",
+        "testDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -57,13 +61,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/Users/visnupriyakv/Desktop/Roker_VMS/test-results",
+        "outputDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "firefox",
         "name": "firefox",
-        "testDir": "/Users/visnupriyakv/Desktop/Roker_VMS/tests",
+        "testDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -71,13 +77,15 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/Users/visnupriyakv/Desktop/Roker_VMS/test-results",
+        "outputDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 1
+        },
         "id": "webkit",
         "name": "webkit",
-        "testDir": "/Users/visnupriyakv/Desktop/Roker_VMS/tests",
+        "testDir": "/Users/VVenkateshwaran/Desktop/Roker_VMS/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -87,22 +95,91 @@
     ],
     "shard": null,
     "updateSnapshots": "missing",
-    "updateSourceMethod": "patch",
+    "updateSourceMethod": "3way",
     "version": "1.52.0",
     "workers": 6,
     "webServer": null
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
-      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+      "title": "API_Test/appealUploadDoc.spec.js",
+      "file": "API_Test/appealUploadDoc.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "API_AppealUploadDoc_Test: Upload a document and expect exact successful response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3802,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "\nREQUEST\n"
+                    },
+                    {
+                      "text": "Upload URL: https://development.vms.staging.rokerplus.com/api/api/appeal-request-documents\n"
+                    },
+                    {
+                      "text": "Headers: {\n  \"accept\": \"text/plain\"\n}\n"
+                    },
+                    {
+                      "text": "File Path: /Users/VVenkateshwaran/Desktop/Roker_VMS/assert/api-testing1.jpg\n"
+                    },
+                    {
+                      "text": "\nRESPONSE\n"
+                    },
+                    {
+                      "text": "Status Code: \u001b[33m200\u001b[39m\n"
+                    },
+                    {
+                      "text": "Body: {\"StatusMessage\":\"Document(s) uploaded succesfully.\",\"StatusCode\":200,\"Content\":[]}\n"
+                    },
+                    {
+                      "text": "\nTest Passed: Document uploaded and expected response received.\n\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-06-11T04:57:44.114Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/VVenkateshwaran/Desktop/Roker_VMS/test-results/API_Test-appealUploadDoc-A-a933c-t-exact-successful-response-chromium/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ab8d2306e11290063c5-f7aae564a27c69cc32e4",
+          "file": "API_Test/appealUploadDoc.spec.js",
+          "line": 6,
+          "column": 1
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2025-05-30T14:06:54.862Z",
-    "duration": 29.987999999999943,
-    "expected": 0,
+    "startTime": "2025-06-11T04:57:42.341Z",
+    "duration": 5653.337999999996,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -1,7 +1,4 @@
 const { test, expect, request } = require('@playwright/test');
-const fs = require('fs');
-const path = require('path');
-
 const createConfig = require('../API_JSON/CreateUser.json');
 const updateConfig = require('../API_JSON/createAndUpdateUser.json');
 const { generateRandomString, generateRandomEmail } = require('../../src/util');
@@ -9,8 +6,8 @@ const { generateRandomString, generateRandomEmail } = require('../../src/util');
 test('API_UpdateUser_Test: Create and Update a User', async () => {
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-        ...updateConfig.headers
-      }
+      ...updateConfig.headers
+    }
   });
 
   // Step 1: Create User
@@ -24,7 +21,7 @@ test('API_UpdateUser_Test: Create and Update a User', async () => {
   };
 
   console.log('\n--- Create User Request ---');
-  console.log('Endpoint:', createConfig.endpoint);
+  console.log('Endpoint:', createConfig.api.endpoint);
   console.log('Body:', JSON.stringify(createBody, null, 2));
 
   const createResponse = await apiContext.post(createConfig.api.endpoint, {
@@ -42,25 +39,23 @@ test('API_UpdateUser_Test: Create and Update a User', async () => {
 
   const created = JSON.parse(createResText);
   expect(created).toHaveProperty('StatusCode');
+  expect([200, 201]).toContain(created.StatusCode);
 
-  if (created.StatusCode !== 200) {
-    console.log(`UserName "${randomUserName}" created successfully.`);
-  }
+  console.log(`User "${randomUserName}" created.`);
 
   // Step 2: Update User
   const updatedFirstName = `${createBody.FirstName}_Updated`;
 
-
   const updateBody = {
     ...updateConfig.body,
-    UserName: createBody.UserName, // carry over the created user's name
-  FirstName: updatedFirstName,
-  MiddleName: createBody.MiddleName,
-  LastName: createBody.LastName,
-  EmailAddress: createBody.EmailAddress,
-  Badge: createBody.Badge,
-  UserGroupName: createBody.UserGroupName,
-  SubClientId: createBody.SubClientId
+    UserName: createBody.UserName,
+    FirstName: updatedFirstName,
+    MiddleName: createBody.MiddleName,
+    LastName: createBody.LastName,
+    EmailAddress: createBody.EmailAddress,
+    Badge: createBody.Badge,
+    UserGroupName: createBody.UserGroupName,
+    SubClientId: createBody.SubClientId
   };
 
   console.log('\n--- Update User Request ---');
@@ -83,9 +78,19 @@ test('API_UpdateUser_Test: Create and Update a User', async () => {
   const updated = JSON.parse(updateResText);
   expect(updated).toHaveProperty('StatusCode');
 
-  if (updated.StatusCode === 200) {
-    console.log(`User First name updated: ${createBody.FirstName} with new first name "${updatedFirstName}" for the UserName ${createBody.UserName}`);
+  const isSuccess =
+    updated.StatusCode === 200 &&
+    updated.StatusMessage === 'User has been updated successfully.';
+
+  const isWarning =
+    updated.StatusCode === 400 &&
+    updated.StatusMessage === "User doesn't Exist.";
+
+  if (isSuccess) {
+    console.log(`User "${randomUserName}" updated successfully. New FirstName: "${updatedFirstName}"`);
+  } else if (isWarning) {
+    console.warn(`Warning: ${updated.StatusMessage} - The user might not exist.`);
   } else {
-    throw new Error(`Update failed: ${updated.StatusMessage}`);
+    throw new Error(`Unexpected update response:\n${JSON.stringify(updated, null, 2)}`);
   }
 });

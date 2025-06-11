@@ -9,32 +9,61 @@ test('API_TicketLookup_ByLicensePlate_Test: Validate lookup response', async () 
     }
   });
 
-  // Build full URL with query params
-  const fullUrl = `${config.api.endpoint}?${qs.stringify(config.api.queryParams)}`;
+  // Construct URL
+  const queryString = qs.stringify(config.api.queryParams);
+  const fullUrl = `${config.api.endpoint}?${queryString}`;
 
+  // === Log Request ===
+  console.log('\n========== API REQUEST ==========');
+  console.log('Method       : GET');
+  console.log('Endpoint     :', config.api.endpoint);
+  console.log('Query Params :', JSON.stringify(config.api.queryParams, null, 2));
+  console.log('Full URL     :', fullUrl);
+  console.log('Headers      :', JSON.stringify(config.headers, null, 2));
+
+  // Send request
   const response = await apiContext.get(fullUrl);
   const status = response.status();
   const bodyText = await response.text();
 
-  console.log('📡 Status:', status);
-  console.log('Response:', bodyText);
+  // === Log Response ===
+  console.log('\n========== API RESPONSE ==========');
+  console.log('Status Code  :', status);
+  console.log('Raw Body     :', bodyText);
 
-  expect([200]).toContain(status);
+  expect(status).toBe(200);
 
   let parsed;
   try {
     parsed = JSON.parse(bodyText);
   } catch (err) {
-    throw new Error(`Failed to parse JSON: ${err}`);
+    throw new Error(`Failed to parse JSON response:\n${err}`);
   }
 
-  expect(parsed).toHaveProperty('StatusMessage');
-  expect(parsed).toHaveProperty('StatusCode');
+  console.log('\n========== PARSED RESPONSE ==========');
+  console.log(JSON.stringify(parsed, null, 2));
 
-  if (parsed.StatusCode === 200 && parsed.Content?.length > 0) {
-    console.log('✅ Tickets found:', parsed.Content.length);
-    expect(parsed.Content[0]).toHaveProperty('LicensePlate', config.api.queryParams.licensePlate);
-  } else {
-    console.warn('No tickets found or unsuccessful lookup.');
+  // Validate top-level response structure
+  expect(parsed).toHaveProperty('StatusMessage', 'Success');
+  expect(parsed).toHaveProperty('StatusCode', 200);
+  expect(parsed).toHaveProperty('Content');
+  expect(parsed.Content).toHaveProperty('TotalTickets');
+  expect(parsed.Content).toHaveProperty('TicketSummonsInfo');
+  expect(Array.isArray(parsed.Content.TicketSummonsInfo)).toBe(true);
+
+  // Validate ticket content
+  const ticket = parsed.Content.TicketSummonsInfo[0];
+  if (!ticket || !ticket.IssueNo || !ticket.LicPlate) {
+    throw new Error(`Unexpected or missing ticket content:\n${JSON.stringify(parsed.Content, null, 2)}`);
   }
+
+  // Specific field validation
+expect(ticket).toHaveProperty('LicPlate');
+expect(ticket.LicPlate.toLowerCase()).toBe(config.api.queryParams.licensePlate.toLowerCase());
+expect(ticket).toHaveProperty('AmountDue');
+expect(ticket).toHaveProperty('IssueDate');
+expect(ticket).toHaveProperty('DueDate');
+
+
+  console.log(`\nValid ticket found for plate: ${ticket.LicPlate}`);
 });
