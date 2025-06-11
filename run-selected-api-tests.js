@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config(); // Load environment variables from .env file
 
 const csvFilePath = path.join(__dirname, 'Testcase.csv'); // Adjust path if needed
-const reportDir = path.join(__dirname, 'allure-report'); // Default Playwright report directory
+const reportDir = path.join(__dirname, 'playwright-report'); // Default Playwright report directory
 const reportFilePath = path.join(reportDir, 'index.html'); // Full path to the report file
 
 // --- Email Configuration ---

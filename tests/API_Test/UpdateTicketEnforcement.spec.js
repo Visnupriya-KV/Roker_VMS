@@ -6,6 +6,13 @@ test('API_UpdateTicketEnforcement_Test: Update ticket enforcement data and valid
     extraHTTPHeaders: config.headers
   });
 
+  // Log API Request
+  console.log('\n********** API Request **********');
+  console.log('Endpoint      :', config.api.updateTicketEnforcement);
+  console.log('Headers       :', JSON.stringify(config.headers, null, 2));
+  console.log('Request Body  :', JSON.stringify(config.requestBody, null, 2));
+
+  // Make the API request
   const response = await apiContext.post(config.api.updateTicketEnforcement, {
     data: config.requestBody
   });
@@ -13,26 +20,25 @@ test('API_UpdateTicketEnforcement_Test: Update ticket enforcement data and valid
   const status = response.status();
   const responseBody = await response.text();
 
-  console.log('📡 Status:', status);
-  console.log('📦 Raw Response:', responseBody);
+  // Log API Response
+  console.log('\n********** API Response **********');
+  console.log('Status Code   :', status);
+  console.log('Response Body :', responseBody);
+
+  // Basic validations
+  expect([200, 201]).toContain(status);
 
   let parsed;
   try {
     parsed = JSON.parse(responseBody);
   } catch (err) {
-    throw new Error(` Failed to parse response JSON: ${err}`);
+    throw new Error(`Failed to parse JSON: ${err}`);
   }
 
-  // ✅ Basic expectations
-  expect([200, 201]).toContain(status);
-  expect(parsed).toHaveProperty('StatusMessage');
-  expect(parsed).toHaveProperty('StatusCode');
-  expect(parsed).toHaveProperty('Content');
+  // Strict response validation
+  expect(parsed).toHaveProperty('StatusMessage', 'Success');
+  expect(parsed).toHaveProperty('StatusCode', 200);
+  expect(parsed).toHaveProperty('Content', 'Record successfully updated.');
 
-  // Optional logs
-  if (parsed.StatusCode === 200) {
-    console.log('✅ Ticket updated:', parsed.Content);
-  } else {
-    console.warn(` Ticket update failed: ${parsed.StatusMessage} - ${parsed.Content}`);
-  }
+  console.log('\nTicket enforcement record updated successfully.');
 });

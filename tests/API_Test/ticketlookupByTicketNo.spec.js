@@ -12,14 +12,23 @@ test('API_TicketLookup_ByTicketNo_Test: Validate ticket lookup response', async 
   const queryString = new URLSearchParams(queryParams).toString();
   const fullUrl = `${endpoint}?${queryString}`;
 
+  // Log API Request
+  console.log('\n********** API Request **********');
+  console.log('Endpoint      :', endpoint);
+  console.log('Query Params  :', JSON.stringify(queryParams, null, 2));
+  console.log('Headers       :', JSON.stringify(config.headers, null, 2));
+  console.log('Full URL      :', fullUrl);
+
   const response = await apiContext.get(fullUrl);
   const status = response.status();
   const body = await response.text();
 
-  console.log('📡 Status:', status);
-  console.log('Response:', body);
+  // Log API Response
+  console.log('\n********** API Response **********');
+  console.log('Status Code   :', status);
+  console.log('Response Body :', body);
 
-  expect([200]).toContain(status);
+  expect(status).toBe(200);
 
   let parsed;
   try {
@@ -28,12 +37,28 @@ test('API_TicketLookup_ByTicketNo_Test: Validate ticket lookup response', async 
     throw new Error(`Failed to parse JSON: ${err}`);
   }
 
-  expect(parsed).toHaveProperty('StatusMessage');
-  expect(parsed).toHaveProperty('StatusCode');
+  expect(parsed).toHaveProperty('StatusMessage', 'Success');
+  expect(parsed).toHaveProperty('StatusCode', 200);
 
-  if (parsed.StatusCode === 200 && parsed.Content?.length > 0) {
-    console.log('✅ Ticket Found:', parsed.Content[0]);
+  // Validate Content structure
+  if (
+    typeof parsed.Content === 'object' &&
+    parsed.Content?.TotalTickets > 0 &&
+    Array.isArray(parsed.Content.TicketSummonsInfo) &&
+    parsed.Content.TicketSummonsInfo.length > 0
+  ) {
+    const ticket = parsed.Content.TicketSummonsInfo[0];
+
+    // Required field validations
+    expect(ticket).toHaveProperty('IssueNo');
+    expect(ticket).toHaveProperty('LicPlate');
+    expect(ticket).toHaveProperty('IssueDate');
+    expect(ticket).toHaveProperty('AmountDue');
+    expect(ticket).toHaveProperty('DueDate');
+
+    console.log('\nTicket Found:');
+    console.log(JSON.stringify(ticket, null, 2));
   } else {
-    console.warn('No ticket found or unexpected response.');
+    throw new Error('Unexpected response: Ticket not found or invalid Content structure.');
   }
 });
