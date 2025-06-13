@@ -1,6 +1,6 @@
 {
     "api": {
-      "checkAppealEligibility": "https://development.vms.staging.rokerplus.com/api/api/check-ticket-eligible-for-appeal?CitationNo=SPTY474"
+      "checkAppealEligibility": "https://development.vms.staging.rokerplus.com/api/api/check-ticket-eligible-for-appeal?CitationNo=12302"
     },
     "headers": {
       "accept": "text/plain"
