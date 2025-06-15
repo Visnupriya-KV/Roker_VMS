@@ -29,9 +29,19 @@ export default defineConfig({
   reporter: [
     ['dot'],
     ['list'],
-    ['allure-playwright'], // ✔ Allure reporter
-    ['json', { outputFile: 'report.json' }],
-    ['html']
+    [
+      'json',
+      {
+        outputFile: 'playwright-report/json/report.json', // Separate directory for JSON
+      },
+    ],
+    [
+      'html',
+      {
+        outputFolder: 'playwright-report/html', // Separate directory for HTML
+        open: 'never', // Prevent auto-opening the report
+      },
+    ],
   ],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
