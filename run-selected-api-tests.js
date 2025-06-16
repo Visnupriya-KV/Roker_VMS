@@ -98,7 +98,7 @@ QA Automation`,
 
 // --- Extract Report Summary ---
 function extractReportSummary(reportDir) {
-    const jsonReportPath = path.join(reportDir, 'report.json'); // Correct path to the JSON report
+    const jsonReportPath = path.join(reportDir, '/json/report.json'); // Correct path to the JSON report
 
     // Default values in case parsing fails
     let totalTests = 0;
@@ -116,8 +116,8 @@ function extractReportSummary(reportDir) {
         console.log('📄 JSON report loaded successfully.');
 
         // Extract test results
-        totalTests = reportContent.stats.expected;
-        passedTests = reportContent.stats.expected - reportContent.stats.unexpected;
+        totalTests = reportContent.stats.expected + reportContent.stats.unexpected;
+        passedTests = reportContent.stats.expected;
         failedTests = reportContent.stats.unexpected;
 
         // Extract duration
@@ -173,7 +173,7 @@ function extractReportSummary(reportDir) {
 
         // Construct the Playwright command with --grep
         const grepPattern = testCaseIDsToRun.map(id => `${id}.*`).join('|'); // Match test titles with additional text
-        const playwrightCommand = `PW_TEST_HTML_REPORT_OPEN=never npx playwright test --reporter=json,html --grep="${grepPattern}"`;
+        const playwrightCommand = `PW_TEST_HTML_REPORT_OPEN=never npx playwright test --grep="${grepPattern}"`;
 
         console.log(`\n🚀 Executing command: ${playwrightCommand}\n`);
 
