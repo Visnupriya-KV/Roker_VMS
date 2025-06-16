@@ -69,7 +69,7 @@ Please download and view the attached HTML report for full details.
 Regards,
 QA Automation`,
         html: `<p>Hi Team,</p>
-<p>DEV Roker test execution has completed with the following details:</p>
+<p>UAT Roker test execution has completed with the following details:</p>
 <ul>
     <li><b>Status:</b> ${status.toUpperCase()}</li>
     <li><b>Total Tests:</b> ${totalTests}</li>
