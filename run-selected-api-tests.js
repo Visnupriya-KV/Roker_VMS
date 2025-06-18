@@ -6,7 +6,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const csvFilePath = path.join(__dirname, 'Testcase.csv'); // Path to Testcase.csv
 const reportDir = path.join(__dirname, 'playwright-report'); // Default Playwright report directory
-const reportFilePath = path.join(reportDir, 'index.html'); // Full path to the report file
+const reportFilePath = path.join(reportDir, '/html/index.html'); // Full path to the report file
 
 // --- Email Configuration ---
 const emailConfig = {
