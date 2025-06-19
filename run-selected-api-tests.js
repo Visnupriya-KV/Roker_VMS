@@ -50,6 +50,11 @@ async function sendReportEmail(status) {
 
     const currentDateTime = new Date().toLocaleString(); // Get current date and time
 
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const formattedTime = currentDate.toTimeString().split(' ')[0].replace(/:/g, ':'); // Format: HH-MM-SS
+    const dynamicFilename = `dev_VMS_${formattedDate}/${formattedTime}.html`;
+
     const mailOptions = {
         from: emailConfig.from,
         to: emailConfig.to,
@@ -81,7 +86,7 @@ QA Automation`,
 <p>Regards,<br>QA Automation</p>`,
         attachments: [
             {
-                filename: 'TestReport.html',
+                filename: dynamicFilename, // Use the dynamically generated filename
                 path: reportFilePath,
                 contentType: 'text/html',
             },
