@@ -47,9 +47,13 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     
-      trace: 'on',
-      screenshot: 'only-on-failure',
-      video: 'retain-on-failure',
+    trace: 'on',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    viewport: null, // Set viewport to null for full-screen mode
+    launchOptions: {
+      args: ['--start-fullscreen'], // Open browsers in full-screen mode
+    },
   
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
