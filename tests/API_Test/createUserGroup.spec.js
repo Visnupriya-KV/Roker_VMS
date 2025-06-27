@@ -1,53 +1,55 @@
 const { test, expect, request } = require('@playwright/test');
-const fs = require('fs');
-const path = require('path');
-const config = require('../API_JSON/CreateUserGroup.json');
-const { generateRandomGroupName } = require('../../src/util');
+const { generateRandomGroupName } = require('../../src/util'); // Utility function for random group name
+const createConfig = require('../API_JSON/CreateUserGroup.json'); // Import CreateUserGroup-specific data
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
-// Path to log file (modify as needed)
-const logFilePath = path.join(__dirname, '../../logs/createdUserGroup.json');
-
-test('API_CreateUserGroup_Test: Create a user group with random name and log it', async () => {
+test('API_CreateUserGroup_Test: Create a user group via API', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token, // Pass the `Token` header
+      'Content-Type': commonHeaders.headers['Content-Type'] // Pass the `Content-Type` header
     }
   });
 
-  const randomGroupName = generateRandomGroupName();
+  const randomGroupName = generateRandomGroupName(); // Generate random group name
+
   const requestBody = {
-    ...config.body,
+    ...createConfig.body,
     GroupName: randomGroupName,
     NewGroupName: randomGroupName
   };
 
-  // Request Logs
-  console.log('\n--- API Request ---');
-  console.log('Endpoint     :', config.api.endpoint);
-  console.log('Method       : POST');
-  console.log('Headers      :', JSON.stringify(config.headers, null, 2));
-  console.log('Request Body :', JSON.stringify(requestBody, null, 2));
+  console.log('\n--- Create User Group Request ---');
+  console.log('URL:', commonEndpoints.endpoints.createUserGroup); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
+  console.log('Request Body:', JSON.stringify(requestBody, null, 2));
 
-  const response = await apiContext.post(config.api.endpoint, {
+  // Send request
+  const response = await apiContext.post(commonEndpoints.endpoints.createUserGroup, {
     data: requestBody
   });
 
   const status = response.status();
   const responseBody = await response.text();
 
-  // Response Logs
-  console.log('\n--- API Response ---');
-  console.log('Status        :', status);
-  console.log('Raw Response  :', responseBody);
+  console.log('\n--- Create User Group Response ---');
+  console.log('Status:', status);
+  console.log('Response Body:', responseBody);
 
-  // Accept only 200, 201 or 400 status codes
   expect([200, 201, 400]).toContain(status);
 
   let parsed;
   try {
     parsed = JSON.parse(responseBody);
   } catch (err) {
-    throw new Error(`Failed to parse JSON: ${err}`);
+    throw new Error(`Failed to parse response JSON: ${err}`);
   }
 
   expect(parsed).toHaveProperty('StatusMessage');
@@ -55,21 +57,19 @@ test('API_CreateUserGroup_Test: Create a user group with random name and log it'
 
   const { StatusMessage, StatusCode } = parsed;
 
-  // Valid Success Response
   const isSuccess =
     StatusCode === 201 && StatusMessage === 'User Group has been created.';
 
-  // Expected Warning Response
   const isWarning =
     StatusCode === 400 && StatusMessage === 'Group Name Already Exist.';
 
   if (isSuccess) {
     console.log(`Group "${randomGroupName}" created successfully.`);
-
-  
   } else if (isWarning) {
     console.warn(`Warning: ${StatusMessage} for "${randomGroupName}".`);
   } else {
     throw new Error(`Unexpected response:\n${JSON.stringify(parsed, null, 2)}`);
   }
 });
+
+// with this API we can also update the groupname --> need to automate that flow

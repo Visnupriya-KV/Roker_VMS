@@ -1,42 +1,48 @@
 const { test, expect, request } = require('@playwright/test');
-const { generateRandomName, generateRandomEmail } = require('../../src/util');
-const config = require('../API_JSON/CreateUser.json');
+const { generateRandomName, generateRandomEmail } = require('../../src/util'); // Utility functions for random data
+const createConfig = require('../API_JSON/CreateUser.json'); // Import CreateUser-specific data
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_CreateUser_Test: Create a user via API', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token, // Pass the `Token` header
+      'Content-Type': commonHeaders.headers['Content-Type'] // Pass the `Content-Type` header
     }
   });
 
-  const randomUsername = generateRandomName('userNameAuto');
-  const randomEmail = generateRandomEmail('Automation', 'test.com');
+  const randomUsername = generateRandomName('AutoUserName'); // Generate random username
+  const randomEmail = `${randomUsername}@yopmail.com`; // Generate email using UserName prefix
 
   const requestBody = {
-    ...config.body,
+    ...createConfig.body,
     UserName: randomUsername,
     EmailAddress: randomEmail
   };
 
-  // Log request
-  console.log('\n--- API Request ---');
-  console.log('Endpoint     :', config.api.endpoint);
-  console.log('Method       : POST');
-  console.log('Headers      :', JSON.stringify(config.headers, null, 2));
-  console.log('Request Body :', JSON.stringify(requestBody, null, 2));
+  console.log('\n--- Create User Request ---');
+  console.log('URL:', commonEndpoints.endpoints.createUser); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
+  console.log('Request Body:', JSON.stringify(requestBody, null, 2));
 
   // Send request
-  const response = await apiContext.post(config.api.endpoint, {
+  const response = await apiContext.post(commonEndpoints.endpoints.createUser, {
     data: requestBody
   });
 
   const status = response.status();
   const resText = await response.text();
 
-  // Log response
-  console.log('\n--- API Response ---');
-  console.log('Status        :', status);
-  console.log('Response Body :', resText);
+  console.log('\n--- Create User Response ---');
+  console.log('Status:', status);
+  console.log('Response Body:', resText);
 
   expect([200, 201, 400]).toContain(status);
 

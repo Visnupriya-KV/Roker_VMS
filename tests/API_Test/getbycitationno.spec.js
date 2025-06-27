@@ -1,20 +1,28 @@
 const { test, expect, request } = require('@playwright/test');
-const config = require('../API_JSON/getbycitationno.json');
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../API_JSON/getbycitationno.json'); // Import citationNumber-specific data
 
 test('API_Get_CitationNoDetails: Validate citation ticket response', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token // Pass the `Token` header
     }
   });
 
-  const endpoint = config.api.endpoint;
+  // Construct the endpoint using CommonEndpoints.json and citationNumber from getbycitationno.json
+  const endpoint = `${commonEndpoints.endpoints.getbycitationno}/${config.citationNumber}`;
 
   // Log API request
   console.log('\n********** API Request **********');
   console.log('Method   : GET');
   console.log('Endpoint :', endpoint);
-  console.log('Headers  :', JSON.stringify(config.headers, null, 2));
+  console.log('Headers  :', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token
+  }, null, 2));
 
   // Send the API request
   const response = await apiContext.get(endpoint);

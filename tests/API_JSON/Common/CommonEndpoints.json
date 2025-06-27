@@ -1,0 +1,21 @@
+{
+    "endpoints": {
+        "appealRequest": "https://development.vms.staging.rokerplus.com/api/api/appeal-request",
+        "appealUploadDoc": "https://development.vms.staging.rokerplus.com/api/api/appeal-request-documents",
+        "checkTicketAppeal": "https://development.vms.staging.rokerplus.com/api/api/check-ticket-in-appeal",
+        "checkAppealEligibility": "https://development.vms.staging.rokerplus.com/api/api/check-ticket-eligible-for-appeal",
+        "activate": "https://development.vms.staging.rokerplus.com/api/api/User/Activate",
+        "deactivate": "https://development.vms.staging.rokerplus.com/api/api/User/Deactivate",
+        "deleteUserGroup": "https://development.vms.staging.rokerplus.com/api/api/UserGroup/Delete",
+        "updateUser": "https://development.vms.staging.rokerplus.com/api/api/User/Update",
+        "createUser": "https://development.vms.staging.rokerplus.com/api/api/User/Create",
+        "createUserGroup": "https://development.vms.staging.rokerplus.com/api/api/UserGroup/Create",
+        "getbycitationno": "https://development.vms.staging.rokerplus.com/api/api/tickets/getbycitationno",
+        "getTicketStage": "https://development.vms.staging.rokerplus.com/api/getticketstage",
+        "payments": "https://development.vms.staging.rokerplus.com/api/payments",
+        "ticketlookupByLicensePlate": "https://development.vms.staging.rokerplus.com/api/ticketlookupByLicensePlate",
+        "ticketlookupByTicketNo": "https://development.vms.staging.rokerplus.com/api/ticketlookupByLicensePlate",
+        "updateTicketEnforcement": "https://development.vms.staging.rokerplus.com/api/api/updateticketenforcement",
+        "updateUserGroup": "https://development.vms.staging.rokerplus.com/api/api/UserGroup/Update"
+    }
+}

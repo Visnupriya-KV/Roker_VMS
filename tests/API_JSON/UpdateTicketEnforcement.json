@@ -1,11 +1,4 @@
 {
-    "api": {
-      "updateTicketEnforcement": "https://development.vms.staging.rokerplus.com/api/api/updateticketenforcement"
-    },
-    "headers": {
-      "accept": "text/plain",
-      "Content-Type": "application/json"
-    },
     "requestBody": {
       "NewTicketNo": "SPR2888",
       "OldTicketNo": "27022",

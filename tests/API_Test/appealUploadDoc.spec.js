@@ -1,21 +1,23 @@
 const { test, expect, request } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
-const config = require('../API_JSON/AppealUploadDoc.json');
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../API_JSON/AppealUploadDoc.json'); // Import API-specific data
 
 test('API_AppealUploadDoc_Test: Upload a document and expect exact successful response', async () => {
   // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept // Only pass the `accept` header
     }
   });
 
   // Resolve and validate file path
   const absoluteFilePath = path.resolve(__dirname, config.formData.filePath);
   console.log('\nREQUEST');
-  console.log('Upload URL:', config.api.uploadEndpoint);
-  console.log('Headers:', JSON.stringify(config.headers, null, 2));
+  console.log('Upload URL:', commonEndpoints.endpoints.appealUploadDoc); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({ accept: commonHeaders.headers.accept }, null, 2));
   console.log('File Path:', absoluteFilePath);
 
   if (!fs.existsSync(absoluteFilePath)) {
@@ -25,10 +27,10 @@ test('API_AppealUploadDoc_Test: Upload a document and expect exact successful re
   const fileStream = fs.createReadStream(absoluteFilePath);
 
   // Perform the upload
-  const response = await apiContext.post(config.api.uploadEndpoint, {
+  const response = await apiContext.post(commonEndpoints.endpoints.appealUploadDoc, {
     multipart: {
-      files: fileStream,
-      CitationNo: config.formData.CitationNo
+      files: fileStream, // Ensure the field name matches server expectations
+      CitationNo: config.formData.CitationNo // Use CitationNo from AppealUploadDoc.json
     }
   });
 
@@ -38,6 +40,10 @@ test('API_AppealUploadDoc_Test: Upload a document and expect exact successful re
   console.log('\nRESPONSE');
   console.log('Status Code:', status);
   console.log('Body:', responseText);
+
+  if (status !== 200) {
+    throw new Error(`Unexpected status code: ${status}`);
+  }
 
   let parsedResponse;
   try {

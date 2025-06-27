@@ -1,11 +1,4 @@
 {
-    "headers": {
-      "accept": "text/plain",
-      "Content-Type": "application/json"
-    },
-    "api": {
-      "appealRequest": "https://development.vms.staging.rokerplus.com/api/api/appeal-request"
-    },
     "requestBody": {
       "CitationNo": "SPTY474",
       "FirstName": "Test",

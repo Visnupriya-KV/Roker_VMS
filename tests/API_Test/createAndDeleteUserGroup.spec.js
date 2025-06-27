@@ -1,16 +1,20 @@
 const { test, expect, request } = require('@playwright/test');
-const createConfig = require('../API_JSON/CreateUserGroup.json');
-const deleteConfig = require('../API_JSON/createAndDeleteUserGroup.json');
-const { generateRandomGroupName } = require('../../src/util');
+const createConfig = require('../API_JSON/CreateUserGroup.json'); // Import CreateUserGroup-specific data
+const { generateRandomGroupName } = require('../../src/util'); // Utility function for random group name
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_DeleteUserGroup_Test: Create and Delete a User Group', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...deleteConfig.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token, // Pass the `Token` header
+      'Content-Type': commonHeaders.headers['Content-Type'] // Pass the `Content-Type` header
     }
   });
 
-  const randomGroupName = generateRandomGroupName();
+  const randomGroupName = generateRandomGroupName(); // Generate random group name
 
   // -------- CREATE GROUP -------- //
   const createBody = {
@@ -20,10 +24,15 @@ test('API_DeleteUserGroup_Test: Create and Delete a User Group', async () => {
   };
 
   console.log('\n--- CREATE GROUP REQUEST ---');
-  console.log('Endpoint:', createConfig.api.endpoint);
+  console.log('URL:', commonEndpoints.endpoints.createUserGroup); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
   console.log('Request Body:', JSON.stringify(createBody, null, 2));
 
-  const createResponse = await apiContext.post(createConfig.api.endpoint, {
+  const createResponse = await apiContext.post(commonEndpoints.endpoints.createUserGroup, {
     data: createBody
   });
 
@@ -48,10 +57,15 @@ test('API_DeleteUserGroup_Test: Create and Delete a User Group', async () => {
   console.log(`Group "${randomGroupName}" created successfully.`);
 
   // -------- DELETE GROUP -------- //
-  const deleteUrl = `${deleteConfig.api.baseUrl}?userGroupName=${encodeURIComponent(randomGroupName)}`;
+  const deleteUrl = `${commonEndpoints.endpoints.deleteUserGroup}?userGroupName=${encodeURIComponent(randomGroupName)}`; // Use endpoint from CommonEndpoints.json
 
   console.log('\n--- DELETE GROUP REQUEST ---');
-  console.log('Endpoint:', deleteUrl);
+  console.log('URL:', deleteUrl);
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
 
   const deleteResponse = await apiContext.delete(deleteUrl);
   const deleteStatus = deleteResponse.status();
