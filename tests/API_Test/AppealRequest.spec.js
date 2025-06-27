@@ -1,5 +1,7 @@
 const { test, expect, request } = require('@playwright/test');
 const config = require('../API_JSON/AppealRequest.json');
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_AppealRequest_Test: Submit appeal and expect exact successful response', async () => {
   const apiContext = await request.newContext({
@@ -10,12 +12,12 @@ test('API_AppealRequest_Test: Submit appeal and expect exact successful response
 
   // Log the request details
   console.log('REQUEST');
-  console.log('URL:', config.api.appealRequest);
-  console.log('Headers:', JSON.stringify(config.headers, null, 2));
+  console.log('Endpoint:', commonEndpoints.endpoints.appealRequest); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify(commonHeaders.headers, null, 2));
   console.log('Body:', JSON.stringify(config.requestBody, null, 2));
 
   // Make the API call
-  const response = await apiContext.post(config.api.appealRequest, {
+  const response = await apiContext.post(commonEndpoints.endpoints.appealRequest, {
     data: config.requestBody
   });
 

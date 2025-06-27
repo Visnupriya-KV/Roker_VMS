@@ -1,17 +1,22 @@
 const { test, expect, request } = require('@playwright/test');
-const createConfig = require('../API_JSON/CreateUserGroup.json');
-const updateConfig = require('../API_JSON/updateUserGroup.json');
-const { generateRandomGroupName } = require('../../src/util');
+const createConfig = require('../API_JSON/CreateUserGroup.json'); // Import CreateUserGroup-specific data
+const updateConfig = require('../API_JSON/updateUserGroup.json'); // Import UpdateUserGroup-specific data
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const { generateRandomGroupName } = require('../../src/util'); // Utility function for random group name
 
 test('API_UpdateUserGroup_Test: Create and Update a User Group', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...updateConfig.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token, // Pass the `Token` header
+      'Content-Type': commonHeaders.headers['Content-Type'] // Pass the `Content-Type` header
     }
   });
 
   // ===== STEP 1: CREATE GROUP =====
-  const randomGroupName = generateRandomGroupName();
+  const randomGroupName = generateRandomGroupName(); // Generate random group name
   const createBody = {
     ...createConfig.body,
     GroupName: randomGroupName,
@@ -19,10 +24,15 @@ test('API_UpdateUserGroup_Test: Create and Update a User Group', async () => {
   };
 
   console.log('\n===== CREATE GROUP REQUEST =====');
-  console.log('Endpoint:', createConfig.api.endpoint);
+  console.log('Endpoint:', commonEndpoints.endpoints.createUserGroup); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
   console.log('Body:', JSON.stringify(createBody, null, 2));
 
-  const createResponse = await apiContext.post(createConfig.api.endpoint, { data: createBody });
+  const createResponse = await apiContext.post(commonEndpoints.endpoints.createUserGroup, { data: createBody });
   const createStatus = createResponse.status();
   const createResText = await createResponse.text();
 
@@ -51,10 +61,15 @@ test('API_UpdateUserGroup_Test: Create and Update a User Group', async () => {
   };
 
   console.log('\n===== UPDATE GROUP REQUEST =====');
-  console.log('Endpoint:', updateConfig.api.endpoint);
+  console.log('Endpoint:', commonEndpoints.endpoints.updateUserGroup); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({
+    accept: commonHeaders.headers.accept,
+    Token: commonHeaders.headers.Token,
+    'Content-Type': commonHeaders.headers['Content-Type']
+  }, null, 2));
   console.log('Body:', JSON.stringify(updateBody, null, 2));
 
-  const updateResponse = await apiContext.put(updateConfig.api.endpoint, { data: updateBody });
+  const updateResponse = await apiContext.put(commonEndpoints.endpoints.updateUserGroup, { data: updateBody });
   const updateStatus = updateResponse.status();
   const updateResText = await updateResponse.text();
 

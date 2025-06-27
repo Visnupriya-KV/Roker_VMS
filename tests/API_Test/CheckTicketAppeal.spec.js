@@ -1,20 +1,29 @@
 import { test, expect, request } from '@playwright/test';
-import config from '../API_JSON/CheckTicketAppeal.json';
+import commonHeaders from '../API_JSON/Common/CommonHeaders.json'; // Import common headers
+import commonEndpoints from '../API_JSON/Common/CommonEndpoints.json'; // Import common endpoints
+import config from '../API_JSON/CheckTicketAppeal.json'; // Import API-specific data
 
 test.describe('CheckTicketAppeal API Test Suite', () => {
   test('API_CheckTicketAppeal_Test: Check if ticket is in appeal', async () => {
-    const apiContext = await request.newContext();
-    const url = `${config.api.checkTicketAppeal}?CitationNo=${config.citationNumber}`;
-    const headers = config.headers;
+    // Setup API context with headers
+    const apiContext = await request.newContext({
+      extraHTTPHeaders: {
+        accept: commonHeaders.headers.accept // Pass only the `accept` header
+      }
+    });
+
+    // Construct the URL using CommonEndpoints.json
+    const url = `${commonEndpoints.endpoints.checkTicketAppeal}?CitationNo=${config.citationNumber}`;
 
     // Log request details
     console.log('\nREQUEST');
     console.log('Endpoint:', url);
     console.log('Method: POST');
-    console.log('Headers:', JSON.stringify(headers, null, 2));
+    console.log('Headers:', JSON.stringify({ accept: commonHeaders.headers.accept }, null, 2));
     console.log('Query Param:', { CitationNo: config.citationNumber });
 
-    const response = await apiContext.post(url, { headers });
+    // Make the API call
+    const response = await apiContext.post(url);
     const status = response.status();
     let responseBody;
 

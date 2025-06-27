@@ -1,19 +1,26 @@
 const { test, expect, request } = require('@playwright/test');
-const config = require('../API_JSON/CheckTicketEligibleAppeal.json');
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../API_JSON/CheckTicketEligibleAppeal.json'); // Import API-specific data
 
 test('API_CheckTicketEligibleAppeal_Test: Validate citation eligibility for appeal', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept // Pass only the `accept` header
     }
   });
 
+  // Construct the URL using CommonEndpoints.json and citationNumber from CheckTicketEligibleAppeal.json
+  const url = `${commonEndpoints.endpoints.checkAppealEligibility}?CitationNo=${config.citationNumber}`;
+
   // Log Request Info
   console.log('\nREQUEST');
-  console.log('URL:', config.api.checkAppealEligibility);
-  console.log('Headers:', JSON.stringify(config.headers, null, 2));
+  console.log('URL:', url);
+  console.log('Headers:', JSON.stringify({ accept: commonHeaders.headers.accept }, null, 2));
 
-  const response = await apiContext.post(config.api.checkAppealEligibility);
+  // Make the API call
+  const response = await apiContext.post(url);
   const responseBody = await response.text();
   const status = response.status();
 

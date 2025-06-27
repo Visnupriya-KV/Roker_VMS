@@ -1,10 +1,5 @@
 {
-  "api": {
-    "getTicketStage": "https://newhope.vms.staging.rokerplus.com/api/getticketstage"
-  },
-  "headers": {
-    "accept": "text/plain"
-  },
+
   "requestBody": {
     "CitationNo": "BNREEE"
   }

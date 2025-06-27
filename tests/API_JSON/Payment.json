@@ -1,11 +1,4 @@
 {
-    "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/payments"
-    },
-    "headers": {
-      "accept": "text/plain",
-      "Content-Type": "application/json"
-    },
     "body": {
       "AGENCYDESIGNATOR": "OTTCI",
       "PAYMENTAMOUNT": 10,

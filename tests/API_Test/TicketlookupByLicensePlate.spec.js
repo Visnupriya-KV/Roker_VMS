@@ -1,25 +1,28 @@
 const { test, expect, request } = require('@playwright/test');
-const config = require('../API_JSON/TicketlookupByLicensePlate.json');
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../API_JSON/TicketlookupByLicensePlate.json'); // Import license plate-specific data
 const qs = require('querystring');
 
 test('API_TicketLookup_ByLicensePlate_Test: Validate lookup response', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept // Pass only the `accept` header
     }
   });
 
-  // Construct URL
+  // Construct URL using CommonEndpoints.json and query parameters from TicketlookupByLicensePlate.json
   const queryString = qs.stringify(config.api.queryParams);
-  const fullUrl = `${config.api.endpoint}?${queryString}`;
+  const fullUrl = `${commonEndpoints.endpoints.ticketlookupByLicensePlate}?${queryString}`;
 
   // === Log Request ===
   console.log('\n========== API REQUEST ==========');
   console.log('Method       : GET');
-  console.log('Endpoint     :', config.api.endpoint);
+  console.log('Endpoint     :', commonEndpoints.endpoints.ticketlookupByLicensePlate);
   console.log('Query Params :', JSON.stringify(config.api.queryParams, null, 2));
   console.log('Full URL     :', fullUrl);
-  console.log('Headers      :', JSON.stringify(config.headers, null, 2));
+  console.log('Headers      :', JSON.stringify({ accept: commonHeaders.headers.accept }, null, 2));
 
   // Send request
   const response = await apiContext.get(fullUrl);
@@ -31,6 +34,7 @@ test('API_TicketLookup_ByLicensePlate_Test: Validate lookup response', async () 
   console.log('Status Code  :', status);
   console.log('Raw Body     :', bodyText);
 
+  // Validate HTTP status
   expect(status).toBe(200);
 
   let parsed;
@@ -58,12 +62,11 @@ test('API_TicketLookup_ByLicensePlate_Test: Validate lookup response', async () 
   }
 
   // Specific field validation
-expect(ticket).toHaveProperty('LicPlate');
-expect(ticket.LicPlate.toLowerCase()).toBe(config.api.queryParams.licensePlate.toLowerCase());
-expect(ticket).toHaveProperty('AmountDue');
-expect(ticket).toHaveProperty('IssueDate');
-expect(ticket).toHaveProperty('DueDate');
-
+  expect(ticket).toHaveProperty('LicPlate');
+  expect(ticket.LicPlate.toLowerCase()).toBe(config.api.queryParams.licensePlate.toLowerCase());
+  expect(ticket).toHaveProperty('AmountDue');
+  expect(ticket).toHaveProperty('IssueDate');
+  expect(ticket).toHaveProperty('DueDate');
 
   console.log(`\nValid ticket found for plate: ${ticket.LicPlate}`);
 });

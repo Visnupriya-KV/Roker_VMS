@@ -1,10 +1,4 @@
 {
-    "citationNumber": "BNREEE",
-    "api": {
-      "checkTicketAppeal": "https://newhope.vms.staging.rokerplus.com/api/api/check-ticket-in-appeal"
-    },
-    "headers": {
-      "accept": "text/plain"
-    }
-  }
-  
+    "citationNumber": "BNREEE"
+}
+

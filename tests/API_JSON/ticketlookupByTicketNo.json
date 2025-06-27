@@ -1,14 +1,11 @@
 {
     "api": {
-      "endpoint": "https://newhope.vms.staging.rokerplus.com/api/ticketlookupByLicensePlate",
+
       "queryParams": {
         "agency": "OTTCI",
         "licensePlate": "223SA",
         "province": "AB"
       }
-    },
-    "headers": {
-      "accept": "text/plain"
     }
   }
   

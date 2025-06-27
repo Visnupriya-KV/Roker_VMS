@@ -1,21 +1,28 @@
 const { test, expect, request } = require('@playwright/test');
-const config = require('../API_JSON/Payment.json');
+const paymentConfig = require('../API_JSON/Payment.json'); // Import Payment-specific data
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_Payment_Test: Make a payment and verify the response', async () => {
+  // Setup API context with headers
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...config.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      'Content-Type': commonHeaders.headers['Content-Type'] // Pass the `Content-Type` header
     }
   });
 
+  // Construct the endpoint using CommonEndpoints.json
+  const endpoint = commonEndpoints.endpoints.payments;
+
   // Log the request
   console.log('\n===== PAYMENT REQUEST =====');
-  console.log('Endpoint:', config.api.endpoint);
-  console.log('Request Body:', JSON.stringify(config.body, null, 2));
+  console.log('Endpoint:', endpoint);
+  console.log('Request Body:', JSON.stringify(paymentConfig.body, null, 2));
 
   // Send the payment request
-  const response = await apiContext.post(config.api.endpoint, {
-    data: config.body
+  const response = await apiContext.post(endpoint, {
+    data: paymentConfig.body
   });
 
   const status = response.status();

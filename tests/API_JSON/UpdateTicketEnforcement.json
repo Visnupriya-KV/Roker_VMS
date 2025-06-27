@@ -1,11 +1,4 @@
 {
-    "api": {
-      "updateTicketEnforcement": "https://newhope.vms.staging.rokerplus.com/api/api/updateticketenforcement"
-    },
-    "headers": {
-      "accept": "text/plain",
-      "Content-Type": "application/json"
-    },
     "requestBody": {
       "NewTicketNo": "SPR2888",
       "OldTicketNo": "SPR2444",

@@ -1,18 +1,20 @@
 const { test, expect, request } = require('@playwright/test');
-const createConfig = require('../API_JSON/CreateUser.json');
-const activateConfig = require('../API_JSON/createAndActivateUser.json');
-const { generateRandomName, generateRandomEmail } = require('../../src/util');
+const createConfig = require('../API_JSON/CreateUser.json'); // Import CreateUser-specific data
+const { generateRandomName, generateRandomEmail } = require('../../src/util'); // Utility functions for random data
+const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_ActivateUser_Test: Create and Activate a User', async () => {
   // Step 1: Create a User
   const apiContext = await request.newContext({
     extraHTTPHeaders: {
-      ...createConfig.headers
+      accept: commonHeaders.headers.accept, // Pass the `accept` header
+      Token: commonHeaders.headers.Token // Pass the `Token` header
     }
   });
 
-  const randomUserName = generateRandomName('user');
-  const randomEmail = generateRandomEmail('user');
+  const randomUserName = generateRandomName('Autouser'); // Generate random username
+  const randomEmail = generateRandomEmail('Autouser'); // Generate random email
 
   const createBody = {
     ...createConfig.body,
@@ -21,10 +23,11 @@ test('API_ActivateUser_Test: Create and Activate a User', async () => {
   };
 
   console.log('\nCREATE USER REQUEST');
-  console.log('Endpoint:', createConfig.api.endpoint);
+  console.log('URL:', commonEndpoints.endpoints.createUser); // Use endpoint from CommonEndpoints.json
+  console.log('Headers:', JSON.stringify({ accept: commonHeaders.headers.accept, Token: commonHeaders.headers.Token }, null, 2));
   console.log('Request Body:', JSON.stringify(createBody, null, 2));
 
-  const createResponse = await apiContext.post(createConfig.api.endpoint, {
+  const createResponse = await apiContext.post(commonEndpoints.endpoints.createUser, {
     data: createBody
   });
 
@@ -49,18 +52,13 @@ test('API_ActivateUser_Test: Create and Activate a User', async () => {
   console.log(`User "${randomUserName}" created successfully.`);
 
   // Step 2: Activate the same user
-  const activateContext = await request.newContext({
-    extraHTTPHeaders: {
-      ...activateConfig.headers
-    }
-  });
-
-  const activateUrl = `${activateConfig.api.endpoint}?userName=${randomUserName}`;
+  const activateUrl = `${commonEndpoints.endpoints.activate}?userName=${randomUserName}`; // Use endpoint from CommonEndpoints.json
 
   console.log('\nACTIVATE USER REQUEST');
-  console.log('Endpoint:', activateUrl);
+  console.log('URL:', activateUrl);
+  console.log('Headers:', JSON.stringify({ accept: commonHeaders.headers.accept, Token: commonHeaders.headers.Token }, null, 2));
 
-  const activateResponse = await activateContext.post(activateUrl);
+  const activateResponse = await apiContext.post(activateUrl);
   const activateStatus = activateResponse.status();
   const activateResText = await activateResponse.text();
 
@@ -97,7 +95,7 @@ test('API_ActivateUser_Test: Create and Activate a User', async () => {
     activated.StatusCode === expectedSuccess.StatusCode &&
     activated.Content === expectedSuccess.Content
   ) {
-    console.log(`Activation succeeded: ${activated.StatusMessage}`);
+    console.log(`User "${randomUserName}" successfully activated.`);
   } else if (
     activated.StatusMessage === expectedWarning.StatusMessage &&
     activated.StatusCode === expectedWarning.StatusCode &&
