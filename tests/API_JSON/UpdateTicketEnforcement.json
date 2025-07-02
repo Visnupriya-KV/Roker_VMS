@@ -1,7 +1,7 @@
 {
     "requestBody": {
       "NewTicketNo": "SPR2888",
-      "OldTicketNo": "SPR2444",
+      "OldTicketNo": "WWEC",
       "PlateNumber": "SP44423",
       "ProvinceState": "AL",
       "PlateExpiryTime": "09/25",
