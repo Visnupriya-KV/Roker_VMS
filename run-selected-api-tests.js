@@ -58,10 +58,10 @@ async function sendReportEmail(status) {
     const mailOptions = {
         from: emailConfig.from,
         to: emailConfig.to,
-        subject: `DEV ROKER TEST REPORT - ${status.toUpperCase()} - (${currentDateTime})`,
+        subject: `DEV ROKER VMS TEST REPORT - ${status.toUpperCase()} - (${currentDateTime})`,
         text: `Hi Team,
 
-DEV Roker test execution has completed with the following details:
+DEV Roker VMS test execution has completed with the following details:
 
 Status: ${status.toUpperCase()}
 Total Tests: ${totalTests}
@@ -74,7 +74,7 @@ Please download and view the attached HTML report for full details.
 Regards,
 QA Automation`,
         html: `<p>Hi Team,</p>
-<p>DEV Roker test execution has completed with the following details:</p>
+<p>DEV Roker VMS test execution has completed with the following details:</p>
 <ul>
     <li><b>Status:</b> ${status.toUpperCase()}</li>
     <li><b>Total Tests:</b> ${totalTests}</li>
