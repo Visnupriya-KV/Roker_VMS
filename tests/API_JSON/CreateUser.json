@@ -1,0 +1,14 @@
+{
+    "body": {
+        "UserName": null,
+        "FirstName": "Automationfirst",
+        "MiddleName": "AutomationMiddle",
+        "LastName": "AutomationLast",
+        "EmailAddress": null,
+        "Badge": "007",
+        "UserGroupName": "AutomationTestGroup",
+        "SubClientId": 71
+      }
+      
+  }
+  

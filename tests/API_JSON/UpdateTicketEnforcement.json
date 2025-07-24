@@ -1,0 +1,17 @@
+{
+    "requestBody": {
+      "NewTicketNo": "SPR2888",
+      "OldTicketNo": "WWEC",
+      "PlateNumber": "SP44423",
+      "ProvinceState": "AL",
+      "PlateExpiryTime": "09/25",
+      "VehicleMake": "FORD",
+      "VehicleColor": "RED",
+      "Location": "Schrute Farms",
+      "Amount": "30.00",
+      "IssueDate": "2025-04-30 13:00:00.000",
+      "PatrollerComments": "test",
+      "ViolationType": "Days-167"
+    }
+  }
+  

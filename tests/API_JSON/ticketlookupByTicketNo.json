@@ -1,0 +1,11 @@
+{
+    "api": {
+
+      "queryParams": {
+        "agency": "OTTCI",
+        "licensePlate": "223SA",
+        "province": "AB"
+      }
+    }
+  }
+  
