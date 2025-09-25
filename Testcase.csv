@@ -17,3 +17,4 @@ S.No,Control,TestCaseID,fileName,Module,Author,Description
 16,Y,API_ActivateUser_Test,createAndActivateUser,API_Regression,Visnu,API_Check  
 17,Y,API_DeactivateUser_Test,createAndDeactivateUser,API_Regression,Visnu,API_Check  
 18,N,UI_SettingsLocation_Test,UI_SettingsLocation,UI_Regression,Visnu,UI Test to add a new location and verify success message
+

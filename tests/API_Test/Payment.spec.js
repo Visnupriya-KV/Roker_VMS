@@ -1,7 +1,8 @@
 const { test, expect, request } = require('@playwright/test');
-const paymentConfig = require('../API_JSON/Payment.json'); // Import Payment-specific data
-const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
-const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const paymentConfig = require('../../data/API_JSON/Payment.json'); // Import Payment-specific data
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
+
 
 test('API_Payment_Test: Make a payment and verify the response', async () => {
   // Setup API context with headers

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import config from '../UI_JSON/UI_SettingsLocation.json'; // Import the JSON file
+import config from '../../data/UI_JSON/UI_SettingsLocation.json'; // Import the JSON file
 
 test.use({ headless: false, browserName: 'chromium', timeout: 120000 }); // Run in headed mode on Chrome with increased timeout
 
