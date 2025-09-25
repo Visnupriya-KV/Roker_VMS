@@ -1,9 +1,9 @@
 const { test, expect, request } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
-const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
-const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
-const config = require('../API_JSON/AppealUploadDoc.json'); // Import API-specific data
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../../data/API_JSON/AppealUploadDoc.json'); // Import API-specific data
 
 test('API_AppealUploadDoc_Test: Upload a document and expect exact successful response', async () => {
   // Setup API context with headers

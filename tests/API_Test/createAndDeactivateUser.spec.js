@@ -1,8 +1,8 @@
 const { test, expect, request } = require('@playwright/test');
-const createConfig = require('../API_JSON/CreateUser.json'); // Import CreateUser-specific data
+const createConfig = require('../../data/API_JSON/CreateUser.json'); // Import CreateUser-specific data
 const { generateRandomName, generateRandomEmail } = require('../../src/util'); // Utility functions for random data
-const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
-const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
 
 test('API_DeactivateUser_Test: Create and Deactivate a User', async () => {
   // Step 1: Create a User
