@@ -1,7 +1,7 @@
 import { test, expect, request } from '@playwright/test';
-import commonHeaders from '../API_JSON/Common/CommonHeaders.json'; // Import common headers
-import commonEndpoints from '../API_JSON/Common/CommonEndpoints.json'; // Import common endpoints
-import config from '../API_JSON/CheckTicketAppeal.json'; // Import API-specific data
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
+import config from '../../data/API_JSON/CheckTicketAppeal.json'; // Import API-specific data
 
 test.describe('CheckTicketAppeal API Test Suite', () => {
   test('API_CheckTicketAppeal_Test: Check if ticket is in appeal', async () => {

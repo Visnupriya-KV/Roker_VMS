@@ -1,8 +1,8 @@
 const { test, expect, request } = require('@playwright/test');
-const createConfig = require('../API_JSON/CreateUserGroup.json'); // Import CreateUserGroup-specific data
-const updateConfig = require('../API_JSON/updateUserGroup.json'); // Import UpdateUserGroup-specific data
-const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
-const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
+const createConfig = require('../../data/API_JSON/CreateUserGroup.json'); // Import CreateUserGroup-specific data
+const updateConfig = require('../../data/API_JSON/updateUserGroup.json'); // Import UpdateUserGroup-specific data
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
 const { generateRandomGroupName } = require('../../src/util'); // Utility function for random group name
 
 test('API_UpdateUserGroup_Test: Create and Update a User Group', async () => {

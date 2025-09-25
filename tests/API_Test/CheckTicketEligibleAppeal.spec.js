@@ -1,7 +1,7 @@
 const { test, expect, request } = require('@playwright/test');
-const commonHeaders = require('../API_JSON/Common/CommonHeaders.json'); // Import common headers
-const commonEndpoints = require('../API_JSON/Common/CommonEndpoints.json'); // Import common endpoints
-const config = require('../API_JSON/CheckTicketEligibleAppeal.json'); // Import API-specific data
+const commonHeaders = require('../../utils/Common/CommonHeaders.json'); // Import common headers
+const commonEndpoints = require('../../utils/Common/CommonEndpoints.json'); // Import common endpoints
+const config = require('../../data/API_JSON/CheckTicketEligibleAppeal.json'); // Import API-specific data
 
 test('API_CheckTicketEligibleAppeal_Test: Validate citation eligibility for appeal', async () => {
   // Setup API context with headers
