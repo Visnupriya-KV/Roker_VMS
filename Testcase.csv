@@ -1,20 +1,2 @@
 S.No,Control,TestCaseID,fileName,Module,Author,Description
-1,Y,API_AppealRequest_Test,AppealRequest,API_Regression,Visnu,API_Check  
-2,Y,API_CheckTicketAppeal_Test,CheckTicketAppeal,API_Regression,Visnu,API_Check  
-3,Y,API_CheckTicketEligibleAppeal_Test,CheckTicketEligibleAppeal,API_Regression,Visnu,API_Check  
-4,Y,API_UpdateTicketEnforcement_Test,UpdateTicketEnforcement,API_Regression,Visnu,API_Check  
-5,Y,API_Getticketstage_Test,Getticketstage,API_Regression,Visnu,API_Check  
-6,Y,API_AppealUploadDoc_Test,AppealUploadDoc,API_Regression,Visnu,API_Check  
-7,Y,API_Get_CitationNoDetails,getbycitationno,API_Regression,Visnu,API_Check  
-8,Y,API_TicketLookup_ByLicensePlate_Test,TicketlookupByLicensePlate,API_Regression,Visnu,API_Check  
-9,Y,API_TicketLookup_ByTicketNo_Test,ticketlookupByTicketNo,API_Regression,Visnu,API_Check  
-10,N,API_Payment_Test,Payment,API_Regression,Visnu,API_Check  
-11,Y,API_CreateUserGroup_Test,CreateUserGroup,API_Regression,Visnu,API_Check  
-12,Y,API_UpdateUserGroup_Test,createAndUpdateUser,API_Regression,Visnu,API_Check  
-13,Y,API_DeleteUserGroup_Test,createAndDeleteUserGroup,API_Regression,Visnu,API_Check  
-14,Y,API_CreateUser_Test,CreateUser,API_Regression,Visnu,API_Check  
-15,Y,API_UpdateUser_Test,updateUserGroup,API_Regression,Visnu,API_Check  
-16,Y,API_ActivateUser_Test,createAndActivateUser,API_Regression,Visnu,API_Check  
-17,Y,API_DeactivateUser_Test,createAndDeactivateUser,API_Regression,Visnu,API_Check  
-18,N,UI_SettingsLocation_Test,UI_SettingsLocation,UI_Regression,Visnu,UI Test to add a new location and verify success message
-
+1,Y,UI_SettingsLocation_Test,location,UI_Regression,Visnu,UI Test to add a new location and verify success message

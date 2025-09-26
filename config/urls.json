@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://development.vms.staging.rokerplus.com",
+  "login": "/Login.aspx"
+}
