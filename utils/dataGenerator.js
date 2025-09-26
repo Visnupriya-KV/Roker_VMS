@@ -16,6 +16,6 @@ export function generateRandomAddress() {
   return `${number} ${street}`;
 }
 
-export function generateUniqueLocationName(prefix = 'TestName') {
+export function generateUniqueLocationName(prefix = 'AutoTestName') {
   return `${prefix}_${generateRandomString(4)}`;
 }
