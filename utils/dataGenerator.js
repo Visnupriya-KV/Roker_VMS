@@ -19,3 +19,8 @@ export function generateRandomAddress() {
 export function generateUniqueLocationName(prefix = 'AutoTestName') {
   return `${prefix}_${generateRandomString(4)}`;
 }
+
+export function generateUniqueFeeName(baseName = "AutoTestFee") {
+  const uniqueSuffix = Math.random().toString(36).substring(2, 6);
+  return `${baseName}_${uniqueSuffix}`;
+}
