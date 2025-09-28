@@ -21,6 +21,8 @@ export default defineConfig({
     viewport: null, // Full-screen
     launchOptions: {
       args: ['--start-maximized'], // Open browser maximized
+      slowMo: 200, // slows down each action by 200ms
+
     },
     ignoreHTTPSErrors: true,
   },
