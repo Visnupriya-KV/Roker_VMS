@@ -1,0 +1,13 @@
+{
+  "citationNo": "AutoCitation",
+  "tagNumber": "AutoTag",
+  "regState": "AB",
+  "vehicleColor": "White",
+  "plateType": "Commercial",
+  "vehicleMake": "ACUR",
+  "vehicleStyle": "BLACK",
+  "violationCode": "0000",
+  "meterNo": "100",
+  "agency": "AutomationAgency",
+  "notes": "Automation Test"
+}
