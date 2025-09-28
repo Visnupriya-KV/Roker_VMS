@@ -7,3 +7,4 @@ S.No,Control,TestCaseID,fileName,Module,Author,Description
 6,Y,UI_CourtCalendar_Test,courtCalendar,UI_Regression,Visnu,UI Test to add a new court calendar and verify success message
 7,Y,UI_CourtRoom_Test,courtRoom,UI_Regression,Visnu,UI Test to add a new courtroom with random location and verify success message
 8,Y,UI_UploadTicketsTemDownload_Test,uploadTickets,UI_Regression,Visnu,UI Test to upload tickets and verify success message
+9,Y,UI_UploadPaymentsTemDownload_Test,uploadPayments,UI_Regression,Visnu,UI Test to upload payments and verify success message
