@@ -24,3 +24,8 @@ export function generateUniqueFeeName(baseName = "AutoTestFee") {
   const uniqueSuffix = Math.random().toString(36).substring(2, 6);
   return `${baseName}_${uniqueSuffix}`;
 }
+
+export function generateUniqueName(baseName) {
+  const uniqueSuffix = Math.random().toString(36).substring(2, 6);
+  return `${baseName}_${uniqueSuffix}`;
+}

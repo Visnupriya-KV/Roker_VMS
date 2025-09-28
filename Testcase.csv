@@ -1,3 +1,4 @@
 S.No,Control,TestCaseID,fileName,Module,Author,Description
-1,Y,UI_SettingsLocation_Test,location,UI_Regression,Visnu,UI Test to add a new location and verify success message
+1,N,UI_SettingsLocation_Test,location,UI_Regression,Visnu,UI Test to add a new location and verify success message
 2,Y,UI_FeeStructure_Add_Test,feeStructure,UI_Regression,Visnu,UI Test to add a new fee structure and verify success message
+3,Y,UI_OfficerDetails_Test,officerDetails,UI_Regression,Visnu,UI Test to add a new officer and verify success message
