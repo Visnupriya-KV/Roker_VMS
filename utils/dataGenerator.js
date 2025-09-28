@@ -46,3 +46,33 @@ export function generateRandomLocation() {
   const randomIndex = Math.floor(Math.random() * locations.length);
   return locations[randomIndex];
 }
+
+export function generateRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export async function selectRandomOption(dropdownLocator) {
+  // Wait for at least one option to appear
+  await dropdownLocator.locator('option').first().waitFor({ state: 'attached', timeout: 10000 });
+
+  // Get all option elements
+  const options = await dropdownLocator.locator('option').all();
+
+  if (options.length === 0) {
+    throw new Error('No options found in dropdown');
+  }
+
+  // Pick a random index
+  const randomIndex = Math.floor(Math.random() * options.length);
+  const option = options[randomIndex];
+
+  // Get value or text as fallback
+  let value = await option.getAttribute('value');
+  if (!value) {
+    value = await option.textContent();
+    value = value.trim();
+  }
+
+  await dropdownLocator.selectOption(value);
+  return value;
+}
