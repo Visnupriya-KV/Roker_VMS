@@ -29,3 +29,20 @@ export function generateUniqueName(baseName) {
   const uniqueSuffix = Math.random().toString(36).substring(2, 6);
   return `${baseName}_${uniqueSuffix}`;
 }
+
+export function generateRandomLocation() {
+  const locations = [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Boston",
+    "Houston",
+    "San Francisco",
+    "Seattle",
+    "Denver",
+    "Miami",
+    "Dallas"
+  ];
+  const randomIndex = Math.floor(Math.random() * locations.length);
+  return locations[randomIndex];
+}
