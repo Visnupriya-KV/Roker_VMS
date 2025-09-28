@@ -5,3 +5,4 @@ S.No,Control,TestCaseID,fileName,Module,Author,Description
 4,Y,UI_CourtRoom_Test,courtRoom,UI_Regression,Visnu,UI Test to add a new courtroom and verify success message
 5,Y,UI_ViolationCode_Test,violationCode,UI_Regression,Visnu,UI Test to add a new violation code and verify success message
 6,Y,UI_CourtCalendar_Test,courtCalendar,UI_Regression,Visnu,UI Test to add a new court calendar and verify success message
+7,Y,UI_CourtRoom_Test,courtRoom,UI_Regression,Visnu,UI Test to add a new courtroom with random location and verify success message
