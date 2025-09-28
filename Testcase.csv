@@ -3,3 +3,4 @@ S.No,Control,TestCaseID,fileName,Module,Author,Description
 2,Y,UI_FeeStructure_Add_Test,feeStructure,UI_Regression,Visnu,UI Test to add a new fee structure and verify success message
 3,Y,UI_OfficerDetails_Test,officerDetails,UI_Regression,Visnu,UI Test to add a new officer and verify success message
 4,Y,UI_CourtRoom_Test,courtRoom,UI_Regression,Visnu,UI Test to add a new courtroom and verify success message
+5,Y,UI_ViolationCode_Test,violationCode,UI_Regression,Visnu,UI Test to add a new violation code and verify success message
