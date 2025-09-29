@@ -5,6 +5,7 @@ export class GeneralSettingsPage {
     this.generalSettingsLink = page.getByRole('link', { name: 'General Settings' });
     this.plateDenialButton = page.getByRole('button', { name: 'Plate Denial Settings' });
     this.holdPaymentButton = page.getByRole('button', { name: 'Hold Payment' });
+    this.appealConfigurationButton = page.getByRole('button', { name: 'Appeal Configuration' });
 
   }
 
@@ -20,5 +21,11 @@ export class GeneralSettingsPage {
 
   async openHoldPayment() {
     await this.holdPaymentButton.click();
+  }
+
+  async openAppealConfiguration() {
+    await this.appealConfigurationButton.click();
+    await this.page.waitForTimeout(1000); // wait to see visually
+    console.log('Opened Appeal Configuration');
   }
 }

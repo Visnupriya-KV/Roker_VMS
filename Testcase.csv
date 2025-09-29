@@ -10,3 +10,4 @@ S.No,Control,TestCaseID,fileName,Module,Author,Description
 9,Y,UI_UploadPaymentsTemDownload_Test,uploadPayments,UI_Regression,Visnu,UI Test to upload payments and verify success message
 10,Y,UI_GeneralSettingsPlateDenail_Test,generalSettingPlateDenial,UI_Regression,Visnu,UI Test to configure plate denial settings and verify success message
 11,Y,UI_GeneralSettingsHoldPayment_Test,holdPayment,UI_Regression,Visnu,UI Test to configure hold payment settings and verify success message
+12,Y,UI_GeneralSettingsAppealConfiguration_Test,appealConfiguration,UI_Regression,Visnu,UI Test to configure appeal settings and verify success message

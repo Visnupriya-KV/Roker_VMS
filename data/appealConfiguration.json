@@ -1,0 +1,13 @@
+{
+  "enableAppeal1": "D",
+  "enableAppeal2": "A",
+  "appealAction1": "RO",
+  "appealAction2": "RegularNFDD",
+  "appealAfterBefore1": "A",
+  "appealAfterBefore2": "B",
+  "holdPayment1": "false",
+  "holdPayment2": "true",
+  "removeOverdue1": "true",
+  "removeOverdue2": "false",
+  "email": "test@yopmail.com,vvenkateshwaran@metropolis.io"
+}
